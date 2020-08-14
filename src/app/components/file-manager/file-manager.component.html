@@ -1,0 +1,102 @@
+<!-- <div style="display: flex; height:40px"> -->
+<mat-toolbar color="primary">
+  <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon>menu</mat-icon>
+  </button> -->
+  <span>Файловий менеджер</span>
+  <span class="example-spacer"></span>
+
+  <button mat-icon-button matTooltip="Перемістити" [matMenuTriggerFor]="move"
+    [matMenuTriggerData]="{element: addSelection}" [disabled]="!selectFolderTrigger && !selectFileTrigger">
+    <mat-icon>open_with</mat-icon>
+    <!-- <span>Перемістити</span> -->
+  </button>
+  <button mat-icon-button matTooltip="Перейменувати" [disabled]="!selectFolderTrigger && !selectFileTrigger">
+    <mat-icon>edit</mat-icon>
+    <!-- <span>Перейменувати</span> -->
+  </button>
+  <button mat-icon-button matTooltip="Видалити" [disabled]="!selectFolderTrigger && !selectFileTrigger"
+    (click)="openDeleteModal()">
+    <mat-icon>delete</mat-icon>
+    <!-- <span>Видалити</span> -->
+  </button>
+  <button mat-icon-button matTooltip="Info about the action" [disabled]="!selectFolderTrigger">
+    <mat-icon>bookmarks</mat-icon>
+    <!-- <span>Змінити колір</span> -->
+  </button>
+  <button mat-icon-button matTooltip="Додати папку" [disabled]="!selectFolderTrigger" (click)="openAddFolderModal()">
+    <mat-icon>create_new_folder</mat-icon>
+  </button>
+</mat-toolbar>
+
+
+<!-- </div> -->
+<div class="root" style="display: flex; height:100%;">
+  <app-file-manager-tree style="border-right: 1px solid #ddd" [some]="some" [child]="child" [opened]="opened"
+    (addFolder)="addElement($event)" (openFolderT)="openFolder($event)" (selectFolder)="selectFolder($event)">
+  </app-file-manager-tree>
+  <app-file-manager-workspace style="padding-left:20px ;" [some]="some" [child]="child"
+    (openFolder)="openFolder($event)" (prev)="prevFolder()" (checks)="check()" (selectFolder)="selectFolder($event)">
+  </app-file-manager-workspace>
+  <button mat-raised-button (click)="check()">Check</button>
+</div>
+
+
+<mat-menu #move="matMenu">
+  <ng-template matMenuContent let-element="element">
+    <div *ngFor="let item of moveTo">
+      <button mat-menu-item *ngIf="item.isFolder" (click)="moveElement(element, item)">{{item.name}}</button>
+    </div>
+    <!-- <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Choose an option</mat-label>
+        <mat-select>
+          <mat-option value="option1">Option 1</mat-option>
+          <mat-option value="option2" disabled>Option 2 (disabled)</mat-option>
+          <mat-option value="option3">Option 3</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div> -->
+  </ng-template>
+  <!-- <button mat-menu-item >Invertebrates</button> -->
+</mat-menu>
+
+<mat-menu #childrens="matMenu">
+  <div>
+    <button mat-menu-item>Birds</button>
+
+  </div>
+</mat-menu>
+
+<mat-menu #invertebrates="matMenu">
+  <button mat-menu-item>Insects</button>
+  <button mat-menu-item>Molluscs</button>
+  <button mat-menu-item>Crustaceans</button>
+  <button mat-menu-item>Corals</button>
+  <button mat-menu-item>Arachnids</button>
+  <button mat-menu-item>Velvet worms</button>
+  <button mat-menu-item>Horseshoe crabs</button>
+</mat-menu>
+
+<mat-menu #fish="matMenu">
+  <button mat-menu-item>Baikal oilfish</button>
+  <button mat-menu-item>Bala shark</button>
+  <button mat-menu-item>Ballan wrasse</button>
+  <button mat-menu-item>Bamboo shark</button>
+  <button mat-menu-item>Banded killifish</button>
+</mat-menu>
+
+<mat-menu #amphibians="matMenu">
+  <button mat-menu-item>Sonoran desert toad</button>
+  <button mat-menu-item>Western toad</button>
+  <button mat-menu-item>Arroyo toad</button>
+  <button mat-menu-item>Yosemite toad</button>
+</mat-menu>
+
+<mat-menu #reptiles="matMenu">
+  <button mat-menu-item>Banded Day Gecko</button>
+  <button mat-menu-item>Banded Gila Monster</button>
+  <button mat-menu-item>Black Tree Monitor</button>
+  <button mat-menu-item>Blue Spiny Lizard</button>
+  <button mat-menu-item disabled>Velociraptor</button>
+</mat-menu>

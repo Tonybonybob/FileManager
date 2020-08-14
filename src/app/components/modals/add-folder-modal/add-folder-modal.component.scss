@@ -1,0 +1,97 @@
+.mat-button-raised {
+  width: 200px;
+}
+
+#fileUpload {
+  display: none;
+}
+
+.fileUpload {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  /* border: 1px solid #ddd; */
+  background: #3f50b6;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.3);
+  margin: 15px 0;
+  transition: .3s;
+
+  &:hover {
+    transition: .3s;
+    // box-shadow: -3px -2px 1px rgba(0, 0, 0, 0.3);
+    border-radius: 30px;
+    // animation-name: headShake;
+    animation-timing-function: ease-in-out;
+
+
+    .uploadIcon {
+      -webkit-animation-timing-function: ease-in-out;
+      animation-timing-function: ease-in-out;
+      -webkit-animation-name: headShake;
+      animation-duration: 1s;
+      animation-name: headShake;
+      color: #fff;
+      transition: .3s;
+    }
+
+  }
+}
+
+@keyframes headShake {
+  0% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+
+  6.5% {
+    -webkit-transform: translateX(-6px) rotateY(-9deg);
+    transform: translateX(-6px) rotateY(-9deg);
+  }
+
+  18.5% {
+    -webkit-transform: translateX(5px) rotateY(7deg);
+    transform: translateX(5px) rotateY(7deg);
+  }
+
+  31.5% {
+    -webkit-transform: translateX(-3px) rotateY(-5deg);
+    transform: translateX(-3px) rotateY(-5deg);
+  }
+
+  43.5% {
+    -webkit-transform: translateX(2px) rotateY(3deg);
+    transform: translateX(2px) rotateY(3deg);
+  }
+
+  50% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+
+.uploadIcon {
+  color: #fff;
+  font-size: 30px;
+  height: 40px;
+  width: 60px;
+  /* display: block; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #ddd;
+  transition: .3s;
+
+}
+
+.uploadText {
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 0 20px;
+  padding-top: 3px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  height: 40px;
+}

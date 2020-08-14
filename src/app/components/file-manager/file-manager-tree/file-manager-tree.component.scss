@@ -1,0 +1,49 @@
+.addElement {
+  font-size: 18px;
+  margin-left: 15px;
+  border: 1px solid #ddd;
+  color: #ddd;
+  //   width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.column-title {
+  cursor: pointer;
+  user-select: none
+}
+
+.active {
+  background-color: #ddd;
+}
+
+.item {
+  height: 35px;
+  display: flex;
+  align-items: center;
+
+  &-arrow {
+    cursor: pointer;
+    width: 10%;
+  }
+
+  &-icon {
+    // width: 15%;
+    margin-right: 5px;
+  }
+
+  &-name {
+    width: 105px;
+    word-break: break-all;
+    margin-top: 4px;
+  }
+
+  &-add {
+    width: 7%;
+
+  }
+}
+
+.margin {
+  margin-left: 23px
+}

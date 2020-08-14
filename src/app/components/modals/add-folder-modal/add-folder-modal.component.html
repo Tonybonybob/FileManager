@@ -1,0 +1,24 @@
+<h2 mat-dialog-title>Додати папку</h2>
+<mat-dialog-content class="mat-typography"
+  style="display: flex; flex-direction: column; justify-content: center; margin-bottom: 30px;">
+  <mat-form-field>
+    <input matInput placeholder="Назва" [(ngModel)]="folderName">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Опис" [(ngModel)]="folderDescription">
+  </mat-form-field>
+  <label for="fileUpload" class="fileUpload">
+    <mat-icon class="uploadIcon">cloud_upload
+    </mat-icon>
+    <div class="uploadText">Завантажити зображення</div>
+  </label>
+  <input id="fileUpload" type="file" placeholder="Folder icon" (change)="file($event)">
+  <!-- </mat-form-field> -->
+  <span style="font-size: 10px;
+  font-style: italic;
+  text-align: center;">{{folderIcon ? folderIcon: ''}}</span>
+</mat-dialog-content>
+<mat-dialog-actions align="center" style="border-top: 1px solid #ddd;">
+  <button mat-raised-button mat-dialog-close>Відмінити</button>
+  <button mat-raised-button [mat-dialog-close]="folderData()">Зберегти</button>
+</mat-dialog-actions>

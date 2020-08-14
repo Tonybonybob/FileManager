@@ -1,0 +1,60 @@
+<div style="display:flex; flex-direction: column; width:100%; ">
+  <div (click)="prevFolder($event)"
+    style="padding-top: 20px;display: flex; align-items: center; cursor: pointer; user-select: none">
+    <mat-icon class=" prev-icon">
+      <!-- keyboard_backspace -->
+      arrow_back_ios
+    </mat-icon>
+    Назад
+  </div>
+  <!-- <div>{{route}}</div> -->
+  <div *ngIf="child?.length !== 0;else notChild" style="width:100%; display: flex;flex-wrap: wrap;">
+
+    <div (dblclick)="openFolderWorkspace(item,item.id)" class="item" *ngFor="let item of child; let idx = index"
+      (click)="selectItem(item, item.id, idx)">
+      <div class="item-block" [ngClass]="{active: selectedItem === idx}">
+        <!-- {{selectedItem}}
+        {{idx}} -->
+        <div class="item-block-top">
+          <mat-icon *ngIf="item.isFolder" class="folder-icon">folder</mat-icon>
+          <mat-icon *ngIf="!item.isFolder" class="file-icon">insert_drive_file</mat-icon>
+        </div>
+        <div class="item-block-bottom">
+          {{item.name}}
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-block-add">
+        <mat-icon class="item-block-add_icon">add</mat-icon>
+      </div>
+    </div>
+  </div>
+  <ng-template #notChild>
+    <div style="width:100%; display: flex;">
+      <div (dblclick)="openFolderWorkspace(item,item.id)" (click)="selectItem(item, item.id, idx)" class="item"
+        *ngFor="let item of some.root.children; let idx = index">
+        <div class="item-block" [ngClass]="{active: selectedItem === idx }">
+          <!-- {{selectedItem}}
+          {{idx}} -->
+          <div class="item-block-top">
+            <mat-icon *ngIf="item.isFolder" class="folder-icon">folder</mat-icon>
+            <mat-icon *ngIf="!item.isFolder" class="file-icon">insert_drive_file
+            </mat-icon>
+          </div>
+          <div class="item-block-bottom">
+            {{item.name}}
+          </div>
+        </div>
+      </div>
+      <div class="item" (click)="addModalOpen()">
+        <div class=" item-block-add">
+          <mat-icon class="item-block-add_icon">add</mat-icon>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</div>
+
+
+<!-- <button (click)=" check($event)">Check</button> -->

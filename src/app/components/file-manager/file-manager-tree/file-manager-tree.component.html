@@ -1,0 +1,84 @@
+<div class="board-columns" style="width: 200px; margin: 15px 20px;">
+  <div class="board-column" *ngFor="let item of some.root.children; let i = index">
+    <span [matMenuTriggerFor]="rootMenu" [matMenuTriggerData]="{item: item}" #menuTrigger="matMenuTrigger"></span>
+
+    <div class="column-title">
+
+      <div *ngIf="item.isFolder; else file">
+        <div (dblclick)="openFolderTree($event, item, item.id)" (click)="selectItem(item, item.id, i)"
+          (contextmenu)="openMenu($event,item, menuTrigger)" class="item" [ngClass]="{active: exp === i}">
+          <span class="material-icons item-arrow"
+            (click)="openTree($event, item, item.id, 1)">keyboard_arrow_down</span>
+          <span class="material-icons item-icon">folder</span>
+          <span class="item-name">{{ item.name }}</span>
+          <!-- <span (click)="addElement($event, item, item.id)" class="material-icons addElement item-add">add</span> -->
+
+        </div>
+
+        <div *ngIf="opened.length !== 0 && opened[0] === item.id">
+          <div style="margin-left:8px;" *ngFor="let it of item.children">
+            <div (dblclick)="openFolderTree($event, it, it.id)" (contextmenu)="openMenu($event,item, menuTrigger)"
+              class="item" [ngClass]="{margin: it.children.length === 0}">
+              <span class="material-icons item-arrow" *ngIf="it.children.length !== 0"
+                (click)="openTree($event, it, it.id, 2)">keyboard_arrow_down</span>
+
+              <span class="material-icons item-icon">folder</span>
+              <span class="item-name">{{ it.name }}</span>
+              <!-- <span (click)="addElement($event, it, it.id)" class="material-icons addElement item-add">add</span> -->
+
+            </div>
+
+            <div *ngIf="opened[0] === item.id && opened[1] === it.id">
+              <div style="margin-left:16px;" *ngFor="let itt of it.children"
+                (contextmenu)="openMenu($event,item, menuTrigger)">
+                <div [ngClass]="{margin: itt.children.length === 0}" class="item">
+                  <span class="material-icons item-arrow" *ngIf="itt.children.length !== 0"
+                    (dblclick)="openFolderTree($event, itt, itt.id)">keyboard_arrow_down</span>
+
+                  <span class="material-icons item-icon">folder</span>
+                  <span class="item-name">{{ itt.name }}</span>
+                  <!-- <span (click)="addElement($event, itt, itt.id)" class="material-icons addElement item-add">add</span> -->
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ng-template #file>
+        <div (contextmenu)="openMenu($event,item, menuTrigger)" style="display: flex;
+        align-items: center;
+        height: 35px;
+        margin-left: 20px;">
+          <span class="material-icons" style="margin-right: 5px;">insert_drive_file</span>
+          <span style="width: 105px;
+          word-break: break-all;
+          margin-top: 4px;">{{ item.name }}</span>
+        </div>
+
+      </ng-template>
+    </div>
+  </div>
+</div>
+
+<mat-menu #rootMenu="matMenu">
+  <ng-template matMenuContent let-element="element">
+    <button mat-menu-item>
+      <mat-icon>open_with</mat-icon>
+      <span>Перемістити</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>edit</mat-icon>
+      <span>Перейменувати</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>delete</mat-icon>
+      <span>Видалити</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>bookmarks</mat-icon>
+      <span>Змінити колір</span>
+    </button>
+  </ng-template>
+</mat-menu>

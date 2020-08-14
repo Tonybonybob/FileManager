@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>{{data? 'Видалення папки із системи' : "Ви дійсно хочете видалити файл?"}}</h1>
+<!-- {{data ? 'yes i got' : 'nine blat'}} -->
+<div *ngIf="data">
+  <mat-dialog-content style="display: flex; flex-direction: column; justify-content: center; margin-bottom: 30px;">
+    <mat-radio-group aria-label="Select an option" style="display: flex;
+    flex-direction: column;
+    margin: 15px 0;" [(ngModel)]="deleteItem">
+      <mat-radio-button style="margin:10px 0;" value="1" *ngFor="let variant of variants" [value]="variant.value">
+        {{variant.text}}</mat-radio-button>
+    </mat-radio-group>
+    <!-- <mat-form-field class="example-full-width"> -->
+  </mat-dialog-content>
+</div>
+
+
+<mat-dialog-actions align="center" style="border-top: 1px solid #ddd;">
+  <button mat-raised-button mat-dialog-close>Відміна</button>
+  <button mat-raised-button [mat-dialog-close]="folderData()">Видалити</button>
+</mat-dialog-actions>
